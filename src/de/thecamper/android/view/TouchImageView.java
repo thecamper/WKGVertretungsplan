@@ -141,6 +141,10 @@ public class TouchImageView extends ImageView {
         }
     }
     
+    /**
+     * Sets the maximum zoom-factor
+     * @param x maximum zoom-factor
+     */
     public void setMaxZoom(float x)
     {
         maxScale = x;
