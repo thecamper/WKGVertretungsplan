@@ -10,6 +10,11 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.ImageView;
 
+/**
+ * Adds touch and zoom abilities to ImageView
+ * @author Mike Ortiz
+ * @see <a href="https://github.com/MikeOrtiz/TouchImageView">Project on GitHub</a>
+ */
 public class TouchImageView extends ImageView {
 
 Matrix matrix = new Matrix();
