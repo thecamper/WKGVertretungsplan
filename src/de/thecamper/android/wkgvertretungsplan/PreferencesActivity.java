@@ -28,7 +28,7 @@ public class PreferencesActivity extends SherlockPreferenceActivity {
             checkForUpdate.setOnPreferenceClickListener(new OnPreferenceClickListener() {
                 
                 public boolean onPreferenceClick(Preference preference) {
-                    String path = "http://dl.dropbox.com/u/8082118/de/thecamper/android/wkgvertretungsplan/version";
+                    String path = getString(R.string.versionURL);
                     new UpdateChecker(context, true).execute(path);
                     return true;
                 }

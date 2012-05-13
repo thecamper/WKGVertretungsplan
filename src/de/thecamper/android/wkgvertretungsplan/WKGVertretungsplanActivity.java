@@ -121,7 +121,7 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
     
     
     private void checkForUpdate() {
-        String path = "http://dl.dropbox.com/u/8082118/de/thecamper/android/wkgvertretungsplan/version";
+        String path = getString(R.string.versionURL);
         new UpdateChecker(this, false).execute(path);
     }
     
@@ -141,7 +141,7 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
             String password = params[1];
             
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("http://www.wittekind.de/vertretungsplan/#");
+            HttpPost httpPost = new HttpPost(getString(R.string.scheduleURL));
             
             // Add your data
             try {
@@ -185,12 +185,12 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
                     try {
                         saveBmp(bmp);
                     } catch (IOException e) {
-                        Toast.makeText(context, "Fehler beim Speichern des Vertretungsplans.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, getString(R.string.errorSaveBMP), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
             else {
-                Toast.makeText(context, "Fehler. Überprüfen Sie die Zugangsdaten!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, getString(R.string.errorAccessSchedule), Toast.LENGTH_SHORT).show();
             }
         }
         
@@ -198,14 +198,6 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
                 double maxWidth) throws IOException, NullPointerException {
             
             byte[] bmpArray = IOUtils.toByteArray(is);
-//            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-//            int nRead;
-//            byte[] data = new byte[16384];
-//            while ((nRead = is.read(data, 0, data.length)) != -1) {
-//              buffer.write(data, 0, nRead);
-//            }
-//            buffer.flush();
-//            byte[] bmpArray = buffer.toByteArray();
             
             BitmapFactory.Options o = new BitmapFactory.Options();
             o.inJustDecodeBounds = true;
