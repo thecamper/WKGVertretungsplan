@@ -70,7 +70,7 @@ public class UpdateChecker extends AsyncTask<String, Void, Boolean> {
         if (b)
             showUpdateAlert();
         else if (showNoUpdateToast)
-            Toast.makeText(context, "Kein Update verfügbar", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(R.string.updateNotAvailable), Toast.LENGTH_SHORT).show();
     }
     
     /**
@@ -78,18 +78,18 @@ public class UpdateChecker extends AsyncTask<String, Void, Boolean> {
      */
     public void showUpdateAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Update");
-        builder.setMessage("Update verfügbar. Jetzt herunterladen?");
+        builder.setTitle(context.getString(R.string.updateTitle));
+        builder.setMessage(context.getString(R.string.updateAvailable));
 //        builder.setIcon(R.drawable.icon);
         builder.setCancelable(false);
-        builder.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(context.getString(R.string.yes), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                Intent intent = new Intent(Intent.ACTION_VIEW ,Uri.parse("http://dl.dropbox.com/u/8082118/de/thecamper/android/wkgvertretungsplan/WKGVertretungsplan.apk"));
+                Intent intent = new Intent(Intent.ACTION_VIEW ,Uri.parse(context.getString(R.string.appURL)));
                 context.startActivity(intent);               
                 ((Activity) context).finish();
             }
         });
-        builder.setNegativeButton("Später", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(context.getString(R.string.later), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();
             }

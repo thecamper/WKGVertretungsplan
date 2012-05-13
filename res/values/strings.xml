@@ -9,5 +9,29 @@
     <string name="authorName">Daniel Grothe</string>
     <string name="version">Version</string>
     <string name="versionNumber">1.1.0</string>
+    <string name="versionURL">http://dl.dropbox.com/u/8082118/de/thecamper/android/wkgvertretungsplan/version</string>
+    <string name="appURL">http://dl.dropbox.com/u/8082118/de/thecamper/android/wkgvertretungsplan/WKGVertretungsplan.apk</string>
+    <string name="prefLoginTitle">Login-Namen eingeben</string>
+    <string name="prefLoginDialogTitle">Login-Namen eingeben</string>
+    <string name="prefLoginSummary">Der Login-Name</string>
+    <string name="prefPasswordDialogTitle">Passwort eingeben</string>
+    <string name="prefPasswordTitle">Passwort</string>
+    <string name="prefPasswordSummary">Das Passwort</string>
+    <string name="prefAutoRefreshTitle">Auto-Refresh</string>
+    <string name="prefAutoRefreshSummary">Automatischer Refresh beim Aufrufen der App</string>
+    <string name="prefSaveBMPTitle">Vertretungsplan speichern</string>
+    <string name="prefSaveBMPSummary">Plan speichern, um nicht ständig neu laden zu müssen</string>
+    <string name="prefCheckForUpdateOnCreateTitle">Nach Update suchen</string>
+    <string name="prefCheckForUpdateOnCreateSummary">Beim Start prüfen, ob Update vorhanden ist</string>
+    <string name="prefCheckForUpdateTitle">Jetzt nach Update suchen</string>
+    <string name="prefCheckForUpdateSummary">Suche jetzt nach einem Update</string>
+    <string name="updateNotAvailable">Kein Update verfügbar</string>
+    <string name="updateTitle">Update</string>
+    <string name="updateAvailable">Update verfügbar. Jetzt herunterladen?</string>
+    <string name="yes">Ja</string>
+    <string name="later">Später</string>
+    <string name="scheduleURL">http://www.wittekind.de/vertretungsplan/#</string>
+    <string name="errorSaveBMP">Fehler beim Speichern des Vertretungsplans</string>
+    <string name="errorAccessSchedule">Fehler. Überprüfen Sie die Zugangsdaten!</string>
 
 </resources>
