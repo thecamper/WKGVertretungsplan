@@ -38,6 +38,12 @@ import com.actionbarsherlock.view.MenuItem;
 
 import de.thecamper.android.view.TouchImageView;
 
+/**
+ * Main Activity of the App
+ * extends SherlockActivity in order to get the ActionBar on devices before Honeycomb
+ * @author Daniel
+ *
+ */
 public class WKGVertretungsplanActivity extends SherlockActivity {
     
     SharedPreferences preferences;
@@ -52,13 +58,17 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         
+        // Check for updates if preference is set
         if (preferences.getBoolean("checkForUpdateOnCreate", false))
             checkForUpdate();
         
+        // layout settings
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
         progressBar.setVisibility(View.INVISIBLE);
         imageView = (TouchImageView) findViewById(R.id.imageView);
         imageView.setMaxZoom(4f);
+        
+        // load saved Bitmap if preference is set
         if (preferences.getBoolean("saveBmp", true)) {
             try {
                 imageView.setImageBitmap(loadBmp());
@@ -67,12 +77,14 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
             }
         }
     }
-
+    
     public void onResume() {
         super.onResume();
+        // refresh Image if preference is set
         if (preferences.getBoolean("autoRefresh", false))
             updateImage();
     }
+
     
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getSupportMenuInflater();
@@ -80,28 +92,32 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
         return true;
     }
 
-    // This method is called once the menu is selected
+    
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        // We have only one menu option
         case R.id.preferences:
             // Launch Preference activity
             Intent i = new Intent(WKGVertretungsplanActivity.this, PreferencesActivity.class);
             startActivity(i);
             break;
         case R.id.refresh:
-            // Update Vertretretungsplan
+            // Update Image
             this.updateImage();
         }
         return true;
     }
     
+    /**
+     * update the image of the schedule from the internet
+     * the update is done in an asynchronous background task
+     */
     private void updateImage() {
         new DownloadFileTask(this).execute(preferences.getString("login", ""), preferences.getString("password", ""));
     }
 
     /**
-     * @param bmp
+     * Saves a bitmap to data.png into the internal storage
+     * @param bmp the bitmap to save
      * @throws IOException
      */
     public void saveBmp(Bitmap bmp) throws IOException {
@@ -111,7 +127,8 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
     }
     
     /**
-     * @return
+     * loads a bitmap from data.png from the internal storage
+     * @return the loaded bitmap
      * @throws FileNotFoundException 
      */
     private Bitmap loadBmp() throws FileNotFoundException {
@@ -120,30 +137,46 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
     }
     
     
+    /**
+     * checks for an update of the app
+     * the check is done in an asynchronous background task
+     */
     private void checkForUpdate() {
-        String path = getString(R.string.versionURL);
-        new UpdateChecker(this, false).execute(path);
+        // no notification toast in the case of no available update
+        new UpdateChecker(this, false).execute(getString(R.string.versionURL));
     }
     
+    /**
+     * Downloads the schedule image from the internet in an asynchronous task
+     * As params there are needed the login and the password in this order
+     * @author Daniel
+     *
+     */
     private class DownloadFileTask extends AsyncTask<String, Void, Bitmap> {
         
-        private Context context;
+        private Context context;        // activity context for the display
+                                        // of notification toasts
+        
         
         public DownloadFileTask(Context context) {
             this.context = context;
         }
         
+        
         protected Bitmap doInBackground(String... params) {
+            // abort, if the params are set false
             if (params.length != 2)
                 return null;
             
+            // set params
             String login = params[0];
             String password = params[1];
             
+            // build the Post-Request
             HttpClient httpClient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(getString(R.string.scheduleURL));
             
-            // Add your data
+            // Add data
             try {
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
                 nameValuePairs.add(new BasicNameValuePair("login", login));
@@ -153,8 +186,11 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
                 // Execute HTTP Post Request
                 HttpResponse response = httpClient.execute(httpPost);
                 
+                // check status code
                 if (response.getStatusLine().getStatusCode() == 200) {
+                    // get bitmap from InputStream
                     InputStream is = response.getEntity().getContent();
+                    // get bitmap and resize if necessary (maximum width/height of 2048 because of OpenGL rendering on ICS devices)
                     Bitmap bmp = generateBitmap(is, 2048, 2048);
                     is.close();
                     
@@ -171,16 +207,19 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
         }
         
         protected void onPreExecute () {
+            // set layout before downloading
             progressBar.setVisibility(View.VISIBLE);
             imageView.setVisibility(View.INVISIBLE);
         }
         
         protected void onPostExecute (Bitmap bmp) {
+            // set layout and new image after downloading
             progressBar.setVisibility(View.INVISIBLE);
             if (bmp != null) {                
                 imageView.setImageBitmap(bmp);
                 imageView.setVisibility(View.VISIBLE);
                 
+                // save bitmap if preference is set
                 if (preferences.getBoolean("saveBmp", true)) {
                     try {
                         saveBmp(bmp);
@@ -194,9 +233,20 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
             }
         }
         
+        /**
+         * get bitmap from InputStream and resize if necessary
+         * 
+         * @param is InputStream of the bitmap
+         * @param maxHeight maximum height of the bitmap
+         * @param maxWidth maximum width of the bitmap
+         * @return the bitmap
+         * @throws IOException
+         * @throws NullPointerException
+         */
         private Bitmap generateBitmap(InputStream is, double maxHeight,
                 double maxWidth) throws IOException, NullPointerException {
             
+            // read InputStream into a byte-Array
             byte[] bmpArray = IOUtils.toByteArray(is);
             
             BitmapFactory.Options o = new BitmapFactory.Options();
