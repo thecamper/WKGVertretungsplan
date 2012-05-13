@@ -2,12 +2,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
     
     <PreferenceCategory android:key="general" android:title="@string/general">
-        <EditTextPreference android:dialogTitle="Login-Namen eingeben" android:key="login" android:summary="Der Login-Name" android:title="Login" android:singleLine="true"/>
-        <EditTextPreference android:dialogTitle="Passwort eingeben" android:key="password" android:title="Passwort" android:summary="Das Passwort" android:inputType="textPassword"/>
-        <CheckBoxPreference android:key="autoRefresh" android:title="Auto-Refresh" android:summary="Automatischer Refresh beim Aufrufen der App"/>
-        <CheckBoxPreference android:title="Vertretungsplan speichern" android:summary="Plan speichern, um nicht ständig neu laden zu müssen" android:key="saveBmp"/>
-        <CheckBoxPreference android:key="checkForUpdateOnCreate" android:summary="Beim Start prüfen, ob Update vorhanden ist." android:title="Nach Update suchen"/>
-        <Preference android:key="checkForUpdate" android:title="Jetzt nach Update suchen" android:summary="Suche jetzt nach einem Update"/>   
+        <EditTextPreference android:dialogTitle="@string/prefLoginDialogTitle" android:key="login" android:summary="@string/prefLoginSummary" android:title="@string/prefLoginTitle" android:singleLine="true"/>
+        <EditTextPreference android:dialogTitle="@string/prefPasswordDialogTitle" android:key="password" android:title="@string/prefPasswordTitle" android:summary="@string/prefPasswordSummary" android:inputType="textPassword"/>
+        <CheckBoxPreference android:key="autoRefresh" android:title="@string/prefAutoRefreshTitle" android:summary="@string/prefAutoRefreshSummary"/>
+        <CheckBoxPreference android:title="@string/prefSaveBMPTitle" android:summary="@string/prefSaveBMPSummary" android:key="saveBmp"/>
+        <CheckBoxPreference android:key="checkForUpdateOnCreate" android:summary="@string/prefCheckForUpdateOnCreateSummary" android:title="@string/prefCheckForUpdateOnCreateTitle"/>
+        <Preference android:key="checkForUpdate" android:title="@string/prefCheckForUpdateTitle" android:summary="@string/prefCheckForUpdateSummary"/>   
     </PreferenceCategory>
     <PreferenceCategory android:key="about" android:title="@string/about">
         <Preference android:summary="@string/authorName" android:key="author" android:title="@string/author"/>
