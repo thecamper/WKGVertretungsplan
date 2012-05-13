@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="PreferencesActivity"></activity>
+        <activity android:name="PreferencesActivity" android:label="@string/preferenceLabel"></activity>
+        <activity android:name="ChangelogActivity" android:label="@string/changelogLabel"></activity>
     </application>
 
 </manifest>

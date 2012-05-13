@@ -12,6 +12,7 @@
     <PreferenceCategory android:key="about" android:title="@string/about">
         <Preference android:summary="@string/authorName" android:key="author" android:title="@string/author"/>
         <Preference android:key="version" android:title="@string/version" android:summary="@string/versionNumber"/>
+        <Preference android:key="showChangelog" android:title="@string/prefChangelogTitle" android:summary="@string/prefChangelogSummary"/>
     </PreferenceCategory>
     
 

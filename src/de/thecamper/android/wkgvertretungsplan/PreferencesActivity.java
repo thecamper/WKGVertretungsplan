@@ -19,17 +19,29 @@ public class PreferencesActivity extends SherlockPreferenceActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
             
+            // set up ActionBar
             ActionBar actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(true);
             
             context = this;
             
+            // Add Listener for Preferences
             Preference checkForUpdate = findPreference("checkForUpdate");
             checkForUpdate.setOnPreferenceClickListener(new OnPreferenceClickListener() {
                 
                 public boolean onPreferenceClick(Preference preference) {
                     String path = getString(R.string.versionURL);
                     new UpdateChecker(context, true).execute(path);
+                    return true;
+                }
+            });
+            
+            Preference showChangelog = findPreference("showChangelog");
+            showChangelog.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+                
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent intent = new Intent(context, ChangelogActivity.class);
+                    startActivity(intent);
                     return true;
                 }
             });

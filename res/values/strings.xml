@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">WKGVertretungsplan</string>
-    <string name="refresh">Aktualisieren</string>
+    <string name="changelogLabel">Changelog</string><string name="refresh">Aktualisieren</string>
     <string name="preferences">Einstellungen</string>
     <string name="general">Allgemein</string>
     <string name="about">Über</string>
@@ -33,5 +33,9 @@
     <string name="scheduleURL">http://www.wittekind.de/vertretungsplan/#</string>
     <string name="errorSaveBMP">Fehler beim Speichern des Vertretungsplans</string>
     <string name="errorAccessSchedule">Fehler. Überprüfen Sie die Zugangsdaten!</string>
+    <string name="prefChangelogTitle">Changelog</string>
+    <string name="prefChangelogSummary">Changelog anzeigen</string>
+    <string name="preferenceLabel">Einstellungen</string>
+    
 
 </resources>
