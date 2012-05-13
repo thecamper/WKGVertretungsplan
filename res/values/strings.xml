@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WKGVertretungsplan</string>
+    <string name="refresh">Aktualisieren</string>
+    <string name="preferences">Einstellungen</string>
+    <string name="general">Allgemein</string>
+    <string name="about">Über</string>
+    <string name="author">Autor</string>
+    <string name="authorName">Daniel Grothe</string>
+    <string name="version">Version</string>
+    <string name="versionNumber">1.1.0</string>
+
+</resources>
