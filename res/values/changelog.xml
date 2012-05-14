@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="changelog">
-        <item >v1.1.2: Changelog hinzugefügt; UI Anpassungen</item><item >v1.1.1: die Benachrichtigung, die anzeigt, dass kein Update verfügbar ist, wurde für die automatische Updateüberprüfung entfernt; Anpassungen &quot;unter der Haube&quot;</item>
+        <item >v1.1.2: Changelog hinzugefügt; UI Anpassungen</item>
+        <item >v1.1.1: die Benachrichtigung, die anzeigt, dass kein Update verfügbar ist, wurde für die automatische Updateüberprüfung entfernt; Anpassungen &quot;unter der Haube&quot;</item>
         
     </string-array>
     
