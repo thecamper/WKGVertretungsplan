@@ -121,10 +121,8 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
      * @param bmp the bitmap to save
      * @throws IOException
      */
-    public void saveBmp(Bitmap bmp) throws IOException {
-        FileOutputStream fos = openFileOutput("data.png", Context.MODE_PRIVATE);
-        bmp.compress(CompressFormat.PNG, 90, fos);
-        fos.close();
+    public void saveBmp(Bitmap bmp) {
+        new SaveBitmapTask().execute(bmp);
     }
     
     /**
@@ -148,6 +146,46 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
         // no notification toast in the case of no available update
         new UpdateChecker(this, versionURL, appURL, false, true).execute();
     }
+    
+    
+    /**
+     * Saves the Bitmap to the internal storage in an asynchronous task
+     * @author Daniel
+     *
+     */
+    private class SaveBitmapTask extends AsyncTask<Bitmap, Void, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(Bitmap... params) {
+         // abort, if the params are set false
+            if (params.length != 1)
+                return false;
+            
+            FileOutputStream fos = null;
+            boolean retVal;
+            
+            try {
+                fos = openFileOutput("data.png", Context.MODE_PRIVATE);
+                retVal = params[0].compress(CompressFormat.PNG, 90, fos);
+            } catch (IOException e) {
+                retVal = false;
+            } finally {
+                if (fos != null) {
+                    try { fos.close(); }
+                    catch (IOException e) { e.printStackTrace(); }
+                }
+            }
+            return retVal;
+        }
+        
+        protected void onPostExecute (Boolean retVal) {
+            if (retVal)
+                System.out.println("Speichern des Bildes erfolgreich");
+            else
+                System.out.println("Fehler beim speichern");
+        }
+    }
+    
     
     /**
      * Downloads the schedule image from the internet in an asynchronous task
@@ -223,13 +261,8 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
                 imageView.setVisibility(View.VISIBLE);
                 
                 // save bitmap if preference is set
-                if (preferences.getBoolean("saveBmp", true)) {
-                    try {
-                        saveBmp(bmp);
-                    } catch (IOException e) {
-                        Toast.makeText(context, getString(R.string.errorSaveBMP), Toast.LENGTH_SHORT).show();
-                    }
-                }
+                if (preferences.getBoolean("saveBmp", true))
+                    saveBmp(bmp);
             }
             else {
                 Toast.makeText(context, getString(R.string.errorAccessSchedule), Toast.LENGTH_SHORT).show();
