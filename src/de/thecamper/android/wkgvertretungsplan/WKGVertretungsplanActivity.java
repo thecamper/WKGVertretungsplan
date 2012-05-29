@@ -37,6 +37,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 import de.thecamper.android.androidtools.TouchImageView;
+import de.thecamper.android.androidtools.UpdateChecker;
 
 /**
  * Main Activity of the App
@@ -142,8 +143,10 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
      * the check is done in an asynchronous background task
      */
     private void checkForUpdate() {
+        String versionURL = getString(R.string.versionURL);
+        String appURL = getString(R.string.appURL);
         // no notification toast in the case of no available update
-        new UpdateChecker(this, false).execute(getString(R.string.versionURL));
+        new UpdateChecker(this, versionURL, appURL, false).execute();
     }
     
     /**

@@ -4,6 +4,8 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.MenuItem;
 
+import de.thecamper.android.androidtools.UpdateChecker;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,8 +32,9 @@ public class PreferencesActivity extends SherlockPreferenceActivity {
             checkForUpdate.setOnPreferenceClickListener(new OnPreferenceClickListener() {
                 
                 public boolean onPreferenceClick(Preference preference) {
-                    String path = getString(R.string.versionURL);
-                    new UpdateChecker(context, true).execute(path);
+                    String versionURL = getString(R.string.versionURL);
+                    String appURL = getString(R.string.appURL);
+                    new UpdateChecker(context, versionURL, appURL, true).execute();
                     return true;
                 }
             });
@@ -40,7 +43,7 @@ public class PreferencesActivity extends SherlockPreferenceActivity {
             showChangelog.setOnPreferenceClickListener(new OnPreferenceClickListener() {
                 
                 public boolean onPreferenceClick(Preference preference) {
-                    Intent intent = new Intent(context, ChangelogActivity.class);
+                    Intent intent = new Intent(context, MyChangelog.class);
                     startActivity(intent);
                     return true;
                 }

@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name="PreferencesActivity" android:label="@string/preferenceLabel"></activity>
-        <activity android:name="ChangelogActivity" android:label="@string/changelogLabel"></activity>
+        <activity android:name="MyChangelog" android:label="@string/changelogLabel"></activity>
     </application>
 
 </manifest>

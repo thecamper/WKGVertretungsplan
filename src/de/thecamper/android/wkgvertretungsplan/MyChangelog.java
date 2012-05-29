@@ -2,11 +2,11 @@ package de.thecamper.android.wkgvertretungsplan;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
+
+import de.thecamper.android.androidtools.ChangelogActivity;
 
 
 /**
@@ -15,31 +15,19 @@ import com.actionbarsherlock.view.MenuItem;
  * @author Daniel
  *
  */
-public class ChangelogActivity extends SherlockActivity {
+public class MyChangelog extends ChangelogActivity {
     
     
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.changelog);
         
         // set up ActionBar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        // fill TextView with changelog
-        TextView textView = (TextView) findViewById(R.id.changelogText);
-        
-        String[] changelogArray = getResources().getStringArray(R.array.changelog);
-        StringBuilder sb = new StringBuilder();
-        String delim = "";
-        for (String s : changelogArray) {
-            sb.append(delim).append(s);
-            delim = "\n\n";
-        }
-        
-        textView.setText(sb.toString());
+        setChangelogText(R.array.changelog);
     }
     
     

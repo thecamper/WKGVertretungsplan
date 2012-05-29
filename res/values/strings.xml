@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">WKGVertretungsplan</string>
-    <string name="changelogLabel">Changelog</string><string name="refresh">Aktualisieren</string>
+    <string name="app_name">WKGVertretungsplan</string><string name="refresh">Aktualisieren</string>
     <string name="preferences">Einstellungen</string>
     <string name="general">Allgemein</string>
     <string name="about">Über</string>
@@ -25,11 +24,6 @@
     <string name="prefCheckForUpdateOnCreateSummary">Beim Start prüfen, ob Update vorhanden ist</string>
     <string name="prefCheckForUpdateTitle">Jetzt nach Update suchen</string>
     <string name="prefCheckForUpdateSummary">Suche jetzt nach einem Update</string>
-    <string name="updateNotAvailable">Kein Update verfügbar</string>
-    <string name="updateTitle">Update</string>
-    <string name="updateAvailable">Update verfügbar. Jetzt herunterladen?</string>
-    <string name="yes">Ja</string>
-    <string name="later">Später</string>
     <string name="scheduleURL">http://www.wittekind.de/vertretungsplan/#</string>
     <string name="errorSaveBMP">Fehler beim Speichern des Vertretungsplans</string>
     <string name="errorAccessSchedule">Fehler. Überprüfen Sie die Zugangsdaten!</string>
