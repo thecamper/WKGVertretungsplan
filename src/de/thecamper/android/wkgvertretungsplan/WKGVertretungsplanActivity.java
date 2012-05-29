@@ -36,7 +36,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
-import de.thecamper.android.view.TouchImageView;
+import de.thecamper.android.androidtools.TouchImageView;
 
 /**
  * Main Activity of the App
