@@ -34,7 +34,7 @@ public class PreferencesActivity extends SherlockPreferenceActivity {
                 public boolean onPreferenceClick(Preference preference) {
                     String versionURL = getString(R.string.versionURL);
                     String appURL = getString(R.string.appURL);
-                    new UpdateChecker(context, versionURL, appURL, true).execute();
+                    new UpdateChecker(context, versionURL, appURL, true, true).execute();
                     return true;
                 }
             });

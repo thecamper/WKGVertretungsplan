@@ -146,7 +146,7 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
         String versionURL = getString(R.string.versionURL);
         String appURL = getString(R.string.appURL);
         // no notification toast in the case of no available update
-        new UpdateChecker(this, versionURL, appURL, false).execute();
+        new UpdateChecker(this, versionURL, appURL, false, true).execute();
     }
     
     /**
