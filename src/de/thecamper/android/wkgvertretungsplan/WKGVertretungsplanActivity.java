@@ -56,6 +56,7 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
     ProgressBar progressBar;
     TouchImageView imageView;
     GoogleAnalyticsTracker tracker;
+    MenuItem menuItemRefresh;
     
     /** Called when the activity is first created. */
     @Override
@@ -115,6 +116,7 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getSupportMenuInflater();
         inflater.inflate(R.menu.menu, menu);
+        menuItemRefresh = menu.findItem(R.id.refresh);
         return true;
     }
 
@@ -128,6 +130,7 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
             break;
         case R.id.refresh:
             // Update Image
+            item.setEnabled(false);
             this.updateImage();
         }
         return true;
@@ -141,6 +144,7 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
         if (tracker != null) {
             tracker.trackPageView("/refresh");
         }
+        
         new DownloadFileTask(this).execute(preferences.getString("login", ""), preferences.getString("password", ""));
     }
 
@@ -227,10 +231,7 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
         }
         
         protected void onPostExecute (Boolean retVal) {
-            if (retVal)
-                System.out.println("Speichern des Bildes erfolgreich");
-            else
-                System.out.println("Fehler beim speichern");
+            menuItemRefresh.setEnabled(true);
         }
     }
     
@@ -304,8 +305,12 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
         protected void onPostExecute (Bitmap bmp) {
             // set layout and new image after downloading
             progressBar.setVisibility(View.INVISIBLE);
-            if (bmp != null) {                
-                ((BitmapDrawable) imageView.getDrawable()).getBitmap().recycle();
+            if (bmp != null) {
+                try {
+                    ((BitmapDrawable) imageView.getDrawable()).getBitmap().recycle();
+                } catch (NullPointerException e) {
+                    
+                }
                 imageView.setImageBitmap(bmp);
                 imageView.setVisibility(View.VISIBLE);
                 
