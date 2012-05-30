@@ -38,5 +38,17 @@
     <string name="askForAnalyticsMessage">Um zu erfahren, in welchem Maße diese App genutzt wird, können anonyme Nutzungsberichte an den Entwickler gesendet werden. Diese Berichte fallen äußerst minimalistisch aus und sind in keinster Weise auf den Nutzer zurückzuführen! Die Entscheidung kann jederzeit in den Einstellungen verändert werden. Darf die App solche Berichte senden?</string>
     <string name="askForAnalyticsYes">Erlauben</string>
     <string name="askForAnalyticsNo">Nicht erlauben</string>
+    <string name="appearance">Aussehen</string>
+
+    <string-array name="prefThemeEntries">
+        <item>Dark</item>
+        <item>Light</item>
+    </string-array>
+    <string-array name="prefThemeEntryValues">
+        <item>dark</item>
+        <item>light</item>
+    </string-array>
+        <string name="prefThemeTitle">Theme</string>
+        <string name="prefThemeSummary">Theme auswählen</string>
 
 </resources>
