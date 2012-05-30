@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.widget.Toast;
 
 public class PreferencesActivity extends SherlockPreferenceActivity {
     
@@ -46,6 +47,23 @@ public class PreferencesActivity extends SherlockPreferenceActivity {
                     Intent intent = new Intent(context, MyChangelog.class);
                     startActivity(intent);
                     return true;
+                }
+            });
+            
+            Preference sendMail = findPreference("sendMail");
+            sendMail.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+                
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent i = new Intent(Intent.ACTION_SEND);
+                    i.setType("message/rfc822");
+                    i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"grothe6@googlemail.com"});
+                    try {
+                        startActivity(Intent.createChooser(i, "Email senden..."));
+                        return true;
+                    } catch (android.content.ActivityNotFoundException ex) {
+                        Toast.makeText(PreferencesActivity.this, "Kein Email-Client installiert.", Toast.LENGTH_SHORT).show();
+                    }
+                    return false;
                 }
             });
     }

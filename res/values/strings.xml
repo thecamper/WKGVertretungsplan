@@ -28,6 +28,8 @@
     <string name="prefChangelogTitle">Changelog</string>
     <string name="prefChangelogSummary">Changelog anzeigen</string>
     <string name="preferenceLabel">Einstellungen</string>
+    <string name="prefSendMailTitle">Mail an den Entwickler</string>
+    <string name="prefSendMailSummary">Kontaktiere den Entwickler</string>
     
 
 </resources>
