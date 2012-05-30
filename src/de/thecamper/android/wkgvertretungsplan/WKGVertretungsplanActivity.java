@@ -317,6 +317,8 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
                 // save bitmap if preference is set
                 if (preferences.getBoolean("saveBmp", true))
                     saveBmp(bmp);
+                else
+                    menuItemRefresh.setEnabled(true);
             }
             else {
                 Toast.makeText(context, getString(R.string.errorAccessSchedule), Toast.LENGTH_SHORT).show();
