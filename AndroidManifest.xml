@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.thecamper.android.wkgvertretungsplan"
-    android:versionCode="9"
+    android:versionCode="10"
     android:versionName="@string/versionNumber" >
 
-    <uses-sdk android:targetSdkVersion="15" android:minSdkVersion="8"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="15" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name="MyApplication"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/Theme.Sherlock" android:name="MyApplication">
+        android:label="@string/app_name" >
         <activity
             android:name=".WKGVertretungsplanActivity"
             android:label="@string/app_name" >
@@ -21,8 +24,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="PreferencesActivity" android:label="@string/preferenceLabel"></activity>
-        <activity android:name="MyChangelog" android:label="@string/changelogLabel"></activity>
+        <activity
+            android:name="PreferencesActivity"
+            android:label="@string/preferenceLabel" >
+        </activity>
+        <activity
+            android:name="MyChangelog"
+            android:label="@string/changelogLabel" >
+        </activity>
     </application>
 
 </manifest>
