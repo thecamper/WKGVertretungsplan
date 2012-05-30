@@ -19,7 +19,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         // The following line triggers the initialization of ACRA
         ACRA.init(this);
-//        setTheme(R.style.Theme_Light);
         super.onCreate();
     }
 }

@@ -1,7 +1,9 @@
 package de.thecamper.android.wkgvertretungsplan;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.MenuItem;
@@ -21,6 +23,8 @@ public class MyChangelog extends ChangelogActivity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setTheme(PreferencesActivity.getTheme(this));
+        
         super.onCreate(savedInstanceState);
         
         // set up ActionBar

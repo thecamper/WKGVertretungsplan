@@ -61,9 +61,11 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setTheme(PreferencesActivity.getTheme(this));
+        
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
+        
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         
         // ask for analytics if it is the first time
