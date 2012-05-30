@@ -18,11 +18,15 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -35,6 +39,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 import de.thecamper.android.androidtools.TouchImageView;
 import de.thecamper.android.androidtools.UpdateChecker;
@@ -50,6 +55,7 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
     SharedPreferences preferences;
     ProgressBar progressBar;
     TouchImageView imageView;
+    GoogleAnalyticsTracker tracker;
     
     /** Called when the activity is first created. */
     @Override
@@ -58,6 +64,17 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
         setContentView(R.layout.main);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        
+        // ask for analytics if it is the first time
+        if (preferences.getBoolean("analyticsFirstTime", true))
+            askForAnalytics();
+        // enable analytics if preference is set
+        if (preferences.getBoolean("enableAnalytics", false)) {
+            tracker = GoogleAnalyticsTracker.getInstance();
+            tracker.setAnonymizeIp(true);
+            tracker.startNewSession("UA-32253235-1", 5, this);
+        }
+        
         
         // Check for updates if preference is set
         if (preferences.getBoolean("checkForUpdateOnCreate", false))
@@ -84,6 +101,14 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
         // refresh Image if preference is set
         if (preferences.getBoolean("autoRefresh", false))
             updateImage();
+    }
+    
+    @Override
+    public void onDestroy() {
+      super.onDestroy();
+      // Stop the tracker when it is no longer needed.
+      if (tracker != null)
+          tracker.stopSession();
     }
 
     
@@ -113,6 +138,9 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
      * the update is done in an asynchronous background task
      */
     private void updateImage() {
+        if (tracker != null) {
+            tracker.trackPageView("/refresh");
+        }
         new DownloadFileTask(this).execute(preferences.getString("login", ""), preferences.getString("password", ""));
     }
 
@@ -147,6 +175,26 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
         new UpdateChecker(this, versionURL, appURL, false, true).execute();
     }
     
+    private void askForAnalytics() {
+        
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.askForAnalyticsMessage);
+        builder.setCancelable(false);
+        builder.setTitle(R.string.askForAnalyticsTitle);
+        builder.setPositiveButton(R.string.askForAnalyticsYes, new OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                preferences.edit().putBoolean("enableAnalytics", true).commit();
+            }
+        });
+        builder.setNegativeButton(R.string.askForAnalyticsNo, new OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                preferences.edit().putBoolean("enableAnalytics", false).commit();
+            }
+        });
+        builder.show();
+        
+        preferences.edit().putBoolean("analyticsFirstTime", false).commit();
+    }
     
     /**
      * Saves the Bitmap to the internal storage in an asynchronous task
@@ -257,6 +305,7 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
             // set layout and new image after downloading
             progressBar.setVisibility(View.INVISIBLE);
             if (bmp != null) {                
+                ((BitmapDrawable) imageView.getDrawable()).getBitmap().recycle();
                 imageView.setImageBitmap(bmp);
                 imageView.setVisibility(View.VISIBLE);
                 

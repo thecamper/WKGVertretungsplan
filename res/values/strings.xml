@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">WKGVertretungsplan</string><string name="refresh">Aktualisieren</string>
+
+    <string name="app_name">WKGVertretungsplan</string>
+    <string name="refresh">Aktualisieren</string>
     <string name="preferences">Einstellungen</string>
     <string name="general">Allgemein</string>
     <string name="about">Über</string>
@@ -30,6 +32,11 @@
     <string name="preferenceLabel">Einstellungen</string>
     <string name="prefSendMailTitle">Mail an den Entwickler</string>
     <string name="prefSendMailSummary">Kontaktiere den Entwickler</string>
-    
+    <string name="prefEnableAnalyticsTitle">Analytics aktivieren</string>
+    <string name="prefEnableAnalyticsSummary">Sende anonyme Nutzungsberichte, damit ich weiß, in welchem Maße die App genutzt wird.</string>
+    <string name="askForAnalyticsTitle">Senden von Nutzungsstatistiken</string>
+    <string name="askForAnalyticsMessage">Um zu erfahren, in welchem Maße diese App genutzt wird, können anonyme Nutzungsberichte an den Entwickler gesendet werden. Diese Berichte fallen äußerst minimalistisch aus und sind in keinster Weise auf den Nutzer zurückzuführen! Die Entscheidung kann jederzeit in den Einstellungen verändert werden. Darf die App solche Berichte senden?</string>
+    <string name="askForAnalyticsYes">Erlauben</string>
+    <string name="askForAnalyticsNo">Nicht erlauben</string>
 
 </resources>
