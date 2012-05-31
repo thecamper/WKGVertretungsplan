@@ -198,18 +198,18 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
         builder.setPositiveButton(R.string.askForAnalyticsYes, new OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
-                preferences.edit().putBoolean("enableAnalytics", true).commit();
+                preferences.edit().putBoolean("enableAnalytics", true)
+                        .putBoolean("analyticsFirstTime", false).commit();
             }
         });
         builder.setNegativeButton(R.string.askForAnalyticsNo, new OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
-                preferences.edit().putBoolean("enableAnalytics", false).commit();
+                preferences.edit().putBoolean("enableAnalytics", false)
+                        .putBoolean("analyticsFirstTime", false).commit();
             }
         });
         builder.show();
-
-        preferences.edit().putBoolean("analyticsFirstTime", false).commit();
     }
 
     /**
