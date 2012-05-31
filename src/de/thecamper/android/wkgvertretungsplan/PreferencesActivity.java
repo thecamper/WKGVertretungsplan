@@ -96,7 +96,9 @@ public class PreferencesActivity extends SherlockPreferenceActivity {
             return R.style.Theme;
         else if (theme != null && theme.equals("light"))
             return R.style.Theme_Light;
+        else if (theme != null && theme.equals("light_darkActionBar"))
+            return R.style.Theme_Light_DarkActionBar;
         else
-            return R.style.Theme;
+            return R.style.Theme_Light_DarkActionBar;
     }
 }

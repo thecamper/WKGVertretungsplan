@@ -39,12 +39,14 @@
     <string name="appearance">Aussehen</string>
 
     <string-array name="prefThemeEntries">
-        <item>Dark</item>
-        <item>Light</item>
+        <item>Dunkel</item>
+        <item>Hell</item>
+        <item>Hell mit dunkler ActionBar</item>
     </string-array>
     <string-array name="prefThemeEntryValues">
         <item>dark</item>
         <item>light</item>
+        <item>light_darkActionBar</item>
     </string-array>
         <string name="prefThemeTitle">Theme</string>
         <string name="prefThemeSummary">Theme auswählen</string>
