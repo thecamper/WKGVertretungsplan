@@ -140,7 +140,7 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
         if (tracker != null) {
             tracker.trackPageView("/refresh");
         }
-        
+
         if (menuItemRefresh != null) {
             menuItemRefresh.setEnabled(false);
             menuItemRefresh.setActionView(new ProgressBar(this));
@@ -263,7 +263,8 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
     private class DownloadFileTask extends AsyncTask<String, Void, Bitmap> {
 
         private Context context;        // activity context for the display
-                                 // of notification toasts
+
+        // of notification toasts
 
         public DownloadFileTask(Context context) {
             this.context = context;
@@ -332,13 +333,17 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
                 // save bitmap if preference is set
                 if (preferences.getBoolean("saveBmp", true))
                     saveBmp(bmp);
-                else if (menuItemRefresh != null){
+                else if (menuItemRefresh != null) {
                     menuItemRefresh.setActionView(null);
                     menuItemRefresh.setEnabled(true);
                 }
             } else {
                 Toast.makeText(context, getString(R.string.errorAccessSchedule),
                                Toast.LENGTH_SHORT).show();
+                if (menuItemRefresh != null) {
+                    menuItemRefresh.setActionView(null);
+                    menuItemRefresh.setEnabled(true);
+                }
             }
         }
 
@@ -357,14 +362,18 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
          */
         private Bitmap generateBitmap(InputStream is, double maxHeight, double maxWidth)
                 throws IOException, NullPointerException {
-            
-            Bitmap unscaledBitmap = ScalingHelper.decodeFile(is, 2048, 2048, ScalingLogic.FIT);
+
+            Bitmap unscaledBitmap = ScalingHelper.decodeFile(is, 2048, 2048,
+                                                             ScalingLogic.FIT);
             if (unscaledBitmap.getHeight() > 2048 || unscaledBitmap.getWidth() > 2048) {
-                Bitmap scaledBitmap = ScalingHelper.createScaledBitmap(unscaledBitmap, 2048, 2048, ScalingLogic.FIT);
+                Bitmap scaledBitmap = ScalingHelper.createScaledBitmap(unscaledBitmap,
+                                                                       2048, 2048,
+                                                                       ScalingLogic.FIT);
                 unscaledBitmap.recycle();
                 return scaledBitmap;
-            } else return unscaledBitmap;
-                
+            } else
+                return unscaledBitmap;
+
         }
     }
 }

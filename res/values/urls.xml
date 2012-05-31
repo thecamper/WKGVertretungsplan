@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="versionURL">http://cloud.github.com/downloads/thecamper/WKGVertretungsplan/version.txt</string>
-    <string name="appURL">https://github.com/downloads/thecamper/WKGVertretungsplan/WKGVertretungsplan_#.apk</string>
+    <string name="versionURL">http://dl.dropbox.com/u/8082118/de/thecamper/android/wkgvertretungsplan/test_version</string>
+    <string name="appURL">http://dl.dropbox.com/u/8082118/de/thecamper/android/wkgvertretungsplan/WKGVertretungsplan_#.apk</string>
 
 </resources>

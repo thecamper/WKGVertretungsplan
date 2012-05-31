@@ -2,7 +2,7 @@
 <resources>
 
     <string-array name="changelog">
-        <item>v1.1.3: Auswählbare Themes hinzugefügt; Option "Auto-Refresh" aufgrund von Bugs entfernt; Standort der Update-Applikation geändert; Funktionen in externe Bibliothek ausgelagert; Performancesteigerung beim Speichern des Vertretungsplans; Erhöhte Stabilität; Senden von CrashReports implementiert; Google Analytics zum optionalen Senden von Nutzungsstatistiken implementiert; UI-Anpassungen</item>
+        <item>v1.1.3: Auswählbare Themes hinzugefügt; Option "Auto-Refresh" aufgrund von Bugs entfernt; Funktionen in externe Bibliothek ausgelagert; Performancesteigerung beim Speichern des Vertretungsplans; Erhöhte Stabilität; Senden von CrashReports implementiert; Google Analytics zum optionalen Senden von Nutzungsstatistiken implementiert; UI-Anpassungen</item>
         <item>v1.1.2: Changelog hinzugefügt; UI Anpassungen</item>
         <item>v1.1.1: die Benachrichtigung, die anzeigt, dass kein Update verfügbar ist, wurde für die automatische Updateüberprüfung entfernt; Anpassungen "unter der Haube"</item>
     </string-array>
