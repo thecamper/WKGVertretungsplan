@@ -109,13 +109,6 @@ public class WKGVertretungsplanActivity extends SherlockActivity {
         }
     }
 
-    public void onResume() {
-        super.onResume();
-        // refresh Image if preference is set
-        if (preferences.getBoolean("autoRefresh", false))
-            updateImage();
-    }
-
     @Override
     public void onDestroy() {
         super.onDestroy();

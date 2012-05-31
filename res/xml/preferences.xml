@@ -4,7 +4,6 @@
     <PreferenceCategory android:key="general" android:title="@string/general">
         <EditTextPreference android:dialogTitle="@string/prefLoginDialogTitle" android:key="login" android:summary="@string/prefLoginSummary" android:title="@string/prefLoginTitle" android:singleLine="true"/>
         <EditTextPreference android:dialogTitle="@string/prefPasswordDialogTitle" android:key="password" android:title="@string/prefPasswordTitle" android:summary="@string/prefPasswordSummary" android:inputType="textPassword"/>
-        <CheckBoxPreference android:key="autoRefresh" android:title="@string/prefAutoRefreshTitle" android:summary="@string/prefAutoRefreshSummary"/>
         <CheckBoxPreference android:title="@string/prefSaveBMPTitle" android:summary="@string/prefSaveBMPSummary" android:key="saveBmp"/>
         <CheckBoxPreference android:key="checkForUpdateOnCreate" android:summary="@string/prefCheckForUpdateOnCreateSummary" android:title="@string/prefCheckForUpdateOnCreateTitle"/>
         <Preference android:key="checkForUpdate" android:title="@string/prefCheckForUpdateTitle" android:summary="@string/prefCheckForUpdateSummary"/>
@@ -14,9 +13,9 @@
         <ListPreference android:key="theme" android:entries="@array/prefThemeEntries" android:entryValues="@array/prefThemeEntryValues" android:summary="@string/prefThemeSummary" android:title="@string/prefThemeTitle"/>
     </PreferenceCategory><PreferenceCategory android:key="about" android:title="@string/about">
         <Preference android:summary="@string/authorName" android:key="author" android:title="@string/author"/>
-        <Preference android:key="version" android:title="@string/version" android:summary="@string/versionNumber"/>
-        <Preference android:key="showChangelog" android:title="@string/prefChangelogTitle" android:summary="@string/prefChangelogSummary"/>
-        <Preference android:key="sendMail" android:summary="@string/prefSendMailSummary" android:title="@string/prefSendMailTitle"/>
+        
+        <Preference android:key="sendMail" android:summary="@string/prefSendMailSummary" android:title="@string/prefSendMailTitle" /><Preference android:key="version" android:title="@string/version" android:summary="@string/versionNumber" /><Preference android:key="showChangelog" android:title="@string/prefChangelogTitle" android:summary="@string/prefChangelogSummary" />
+        
     </PreferenceCategory>
     
     

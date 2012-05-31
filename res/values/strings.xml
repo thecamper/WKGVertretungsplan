@@ -16,8 +16,6 @@
     <string name="prefPasswordDialogTitle">Passwort eingeben</string>
     <string name="prefPasswordTitle">Passwort</string>
     <string name="prefPasswordSummary">Das Passwort</string>
-    <string name="prefAutoRefreshTitle">Auto-Refresh</string>
-    <string name="prefAutoRefreshSummary">Automatischer Refresh beim Aufrufen der App</string>
     <string name="prefSaveBMPTitle">Vertretungsplan speichern</string>
     <string name="prefSaveBMPSummary">Plan speichern, um nicht ständig neu laden zu müssen</string>
     <string name="prefCheckForUpdateOnCreateTitle">Nach Update suchen</string>
