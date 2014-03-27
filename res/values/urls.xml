@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <string name="versionURL">http://dl.dropbox.com/u/8082118/de/thecamper/android/wkgvertretungsplan/version</string>
     <string name="appURL">http://dl.dropbox.com/u/8082118/de/thecamper/android/wkgvertretungsplan/WKGVertretungsplan_#.apk</string>
-
+    <string name="vertretungsplanURL">http://www.wittekind.de/vertretungsplan/#</string>
+    <string name="klausurplanURL">http://www.wittekind.de/klausurplan/#</string>
 </resources>

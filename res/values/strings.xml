@@ -9,7 +9,7 @@
     <string name="author">Autor</string>
     <string name="authorName">Daniel Grothe</string>
     <string name="version">Version</string>
-    <string name="versionNumber">1.1.3</string>
+    <string name="versionNumber">1.2</string>
     <string name="prefLoginTitle">Login-Namen eingeben</string>
     <string name="prefLoginDialogTitle">Login-Namen eingeben</string>
     <string name="prefLoginSummary">Der Login-Name</string>
@@ -37,6 +37,8 @@
     <string name="askForAnalyticsYes">Erlauben</string>
     <string name="askForAnalyticsNo">Nicht erlauben</string>
     <string name="appearance">Aussehen</string>
+    <string name="tabVertretungsplanName">Vertretungsplan</string>
+    <string name="tabKlausurplanName">Klausurplan</string>
 
     <string-array name="prefThemeEntries">
         <item>Dunkel</item>
