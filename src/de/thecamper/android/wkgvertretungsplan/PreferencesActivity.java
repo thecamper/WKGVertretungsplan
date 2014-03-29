@@ -28,14 +28,13 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.MenuItem;
 
-import de.thecamper.android.androidtools.UpdateChecker;
-
 public class PreferencesActivity extends SherlockPreferenceActivity {
 
 	Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		// TODO: Neu erstellen nach aktuellem Standard
 		setTheme(PreferencesActivity.getTheme(this));
 
 		super.onCreate(savedInstanceState);
@@ -46,18 +45,6 @@ public class PreferencesActivity extends SherlockPreferenceActivity {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
 		context = this;
-
-		// Add Listener for Preferences
-		Preference checkForUpdate = findPreference("checkForUpdate");
-		checkForUpdate.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-
-			public boolean onPreferenceClick(Preference preference) {
-				String versionURL = getString(R.string.versionURL);
-				String appURL = getString(R.string.appURL);
-				new UpdateChecker(context, versionURL, appURL, true, true).execute();
-				return true;
-			}
-		});
 
 		Preference showChangelog = findPreference("showChangelog");
 		showChangelog.setOnPreferenceClickListener(new OnPreferenceClickListener() {
@@ -75,7 +62,7 @@ public class PreferencesActivity extends SherlockPreferenceActivity {
 			public boolean onPreferenceClick(Preference preference) {
 				Intent i = new Intent(Intent.ACTION_SEND);
 				i.setType("message/rfc822");
-				i.putExtra(Intent.EXTRA_EMAIL, new String[] { "grothe6@googlemail.com" });
+				i.putExtra(Intent.EXTRA_EMAIL, new String[] { "grothe6@gmail.com" });
 				try {
 					startActivity(Intent.createChooser(i, "Email senden..."));
 					return true;

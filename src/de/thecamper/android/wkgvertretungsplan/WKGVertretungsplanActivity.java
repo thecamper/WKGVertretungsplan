@@ -42,7 +42,6 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.analytics.tracking.android.EasyTracker;
 
-import de.thecamper.android.androidtools.UpdateChecker;
 import de.thecamper.android.wkgvertretungsplan.fragments.KlausurplanFragment;
 import de.thecamper.android.wkgvertretungsplan.fragments.ScheduleFragment;
 import de.thecamper.android.wkgvertretungsplan.fragments.TaskFragment;
@@ -113,11 +112,6 @@ public class WKGVertretungsplanActivity extends SherlockFragmentActivity impleme
 		if (preferences.getBoolean("analyticsFirstTime", true)) {
 			askForAnalytics();
 		}
-
-		// Check for updates if preference is set
-		if (preferences.getBoolean("checkForUpdateOnCreate", false)) {
-			checkForUpdate();
-		}
 	}
 
 	@Override
@@ -178,17 +172,6 @@ public class WKGVertretungsplanActivity extends SherlockFragmentActivity impleme
 		taskFragment.new DownloadFileTask(this, id)
 				.execute(preferences.getString("login", ""),
 						preferences.getString("password", ""));
-	}
-
-	/**
-	 * checks for an update of the app the check is done in an asynchronous
-	 * background task
-	 */
-	private void checkForUpdate() {
-		String versionURL = getString(R.string.versionURL);
-		String appURL = getString(R.string.appURL);
-		// no notification toast in the case of no available update
-		new UpdateChecker(this, versionURL, appURL, false, true).execute();
 	}
 
 	private void askForAnalytics() {

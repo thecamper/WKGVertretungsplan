@@ -9,7 +9,7 @@
     <string name="author">Autor</string>
     <string name="authorName">Daniel Grothe</string>
     <string name="version">Version</string>
-    <string name="versionNumber">1.2</string>
+    <string name="versionNumber">1.3</string>
     <string name="prefLoginTitle">Login-Namen eingeben</string>
     <string name="prefLoginDialogTitle">Login-Namen eingeben</string>
     <string name="prefLoginSummary">Der Login-Name</string>
