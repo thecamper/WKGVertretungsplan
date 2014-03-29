@@ -1,12 +1,12 @@
 WKGVertretungsplan
 ==================
 
-Vertretungsplan für das Wittekind-Gymnasium Lübbecke
+Vertretungsplan und Klausurplan fÃ¼r das Wittekind-Gymnasium LÃ¼bbecke
 
-Unterstützte Android Versionen: 8 (2.2.x) bis 15 (4.0.3)
+UnterstÃ¼tzte Android Versionen: 8 (2.2.x) bis 19 (4.4.2)
 
 
-Es wird ActionBarSherlock [1] und androidtools [2] benötigt, um die App zu kompilieren:
+Es wird ActionBarSherlock [1] und androidtools [2] benÃ¶tigt, um die App zu kompilieren:
 
 [1] https://github.com/JakeWharton/ActionBarSherlock/
 

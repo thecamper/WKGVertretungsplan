@@ -17,12 +17,11 @@
     <string name="prefPasswordTitle">Passwort</string>
     <string name="prefPasswordSummary">Das Passwort</string>
     <string name="prefSaveBMPTitle">Vertretungsplan speichern</string>
-    <string name="prefSaveBMPSummary">Plan speichern, um nicht ständig neu laden zu müssen</string>
+    <string name="prefSaveBMPSummary">Aktuellen Plan auf dem Gerät speichern</string>
     <string name="prefCheckForUpdateOnCreateTitle">Nach Update suchen</string>
     <string name="prefCheckForUpdateOnCreateSummary">Beim Start prüfen, ob Update vorhanden ist</string>
     <string name="prefCheckForUpdateTitle">Jetzt nach Update suchen</string>
     <string name="prefCheckForUpdateSummary">Suche jetzt nach einem Update</string>
-    <string name="scheduleURL">http://www.wittekind.de/vertretungsplan/#</string>
     <string name="errorSaveBMP">Fehler beim Speichern des Vertretungsplans</string>
     <string name="errorAccessSchedule">Fehler. Überprüfen Sie die Zugangsdaten!</string>
     <string name="prefChangelogTitle">Changelog</string>
@@ -31,7 +30,7 @@
     <string name="prefSendMailTitle">Mail an den Entwickler</string>
     <string name="prefSendMailSummary">Kontaktiere den Entwickler</string>
     <string name="prefEnableAnalyticsTitle">Analytics aktivieren</string>
-    <string name="prefEnableAnalyticsSummary">Sende anonyme Nutzungsberichte, damit ich weiß, in welchem Maße die App genutzt wird.</string>
+    <string name="prefEnableAnalyticsSummary">Trage zur anonymen Nutzungsstatistik bei</string>
     <string name="askForAnalyticsTitle">Senden von Nutzungsstatistiken</string>
     <string name="askForAnalyticsMessage">Um zu erfahren, in welchem Maße diese App genutzt wird, können anonyme Nutzungsberichte an den Entwickler gesendet werden. Diese Berichte fallen äußerst minimalistisch aus und sind in keinster Weise auf den Nutzer zurückzuführen! Die Entscheidung kann jederzeit in den Einstellungen verändert werden. Darf die App solche Berichte senden?</string>
     <string name="askForAnalyticsYes">Erlauben</string>
@@ -39,6 +38,8 @@
     <string name="appearance">Aussehen</string>
     <string name="tabVertretungsplanName">Vertretungsplan</string>
     <string name="tabKlausurplanName">Klausurplan</string>
+    <string name="htmlBodyTop"><![CDATA[<html><head></head><body><img src=\"data:image/gif;base64,]]></string>
+    <string name="htmlBodyBot"><![CDATA[\" style=\"display: block; margin-left: auto; margin-right: auto;\" /></body></html>]]></string>
 
     <string-array name="prefThemeEntries">
         <item>Dunkel</item>

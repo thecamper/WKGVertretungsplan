@@ -8,10 +8,9 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ProgressBar;
 import de.thecamper.android.wkgvertretungsplan.R;
-import de.thecamper.android.wkgvertretungsplan.WKGVertretungsplanActivity;
-import de.thecamper.android.wkgvertretungsplan.touch.TouchImageView;
 
 public class VertretungsplanFragment extends ScheduleFragment {
 
@@ -31,17 +30,20 @@ public class VertretungsplanFragment extends ScheduleFragment {
 				R.id.progressBarVertretungsplan);
 		progressBar.setVisibility(View.INVISIBLE);
 
-		imageView = (TouchImageView) getView()
-				.findViewById(R.id.imageViewVertretungsplan);
-		// load saved Bitmap if preference is set
-		if (PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(
-				"saveBmp", true)) {
+		webView = (WebView) getView().findViewById(R.id.webViewVertretungsplan);
+		setWebViewSettings(webView);
+		if (savedInstanceState != null) {
+			progressBar.setVisibility(savedInstanceState.getInt("progressBarVisibility"));
+			webView.restoreState(savedInstanceState);
+			webView.setVisibility(savedInstanceState.getInt("webViewVisibility"));
+		} else if (PreferenceManager.getDefaultSharedPreferences(getActivity())
+				.getBoolean("saveBmp", true)) {
 			try {
-				setImage(loadBmp(WKGVertretungsplanActivity.VERTRETUNGSPLAN));
+				loadHtml(TaskFragment.VERTRETUNGSPLAN);
 			} catch (FileNotFoundException e) {
-				imageView.setVisibility(View.INVISIBLE);
+				webView.setVisibility(View.INVISIBLE);
 			} catch (IOException e) {
-				imageView.setVisibility(View.INVISIBLE);
+				webView.setVisibility(View.INVISIBLE);
 			}
 		}
 	}
