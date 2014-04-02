@@ -20,6 +20,9 @@ import org.acra.annotation.ReportsCrashes;
 
 import android.app.Application;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
+
 // @formatter:off
 @ReportsCrashes(formKey = "",
 				formUri = "https://grothe6.pictor.uberspace.de/acra-wkg/_design/acra-storage/_update/report",
@@ -29,10 +32,22 @@ import android.app.Application;
 				formUriBasicAuthPassword = "f3684dAc")
 // @formatter:on
 public class MyApplication extends Application {
+	Tracker tracker;
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		// The following line triggers the initialization of ACRA
 		ACRA.init(this);
+	}
+
+	synchronized public Tracker getTracker() {
+		if (tracker == null) {
+			GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+			// analytics.setDryRun(true);
+			// analytics.getLogger().setLogLevel(LogLevel.VERBOSE);
+			tracker = analytics.newTracker("UA-32253235-1");
+		}
+		return tracker;
 	}
 }

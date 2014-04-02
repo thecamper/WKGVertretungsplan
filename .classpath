@@ -7,7 +7,6 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/actionbarsherlock"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
-	<classpathentry kind="lib" path="D:/Dokumente/workspace/Java/Android/eigene Projekte/WKGVertretungsplan/libs/libGoogleAnalyticsServices.jar"/>
 	<classpathentry kind="lib" path="D:/Dokumente/workspace/Java/Android/eigene Projekte/WKGVertretungsplan/libs/acra-4.5.0.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

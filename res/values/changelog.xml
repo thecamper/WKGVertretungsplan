@@ -2,6 +2,7 @@
 <resources>
 
     <string-array name="changelog">
+        <item>v1.3.1: Fehlerbehebungen, Update der Libraries, Android 2.2 wird aufgrund von Inkompatibilitäten nicht länger unterstützt</item>
         <item>v1.3: Veröffentlichung auf Google Play, entfernen der eingebauten Update-Funktion</item>
         <item>v1.2: Integration des Klausurplans, Tab-Layout, Nutzung eines WebViews anstatt ImageViews, Fehlerbehebungen</item>
         <item>v1.1.4: Rebuild, nichts wirklich neues, neue Analyticsversion und neue Fehlermeldungsengine</item>

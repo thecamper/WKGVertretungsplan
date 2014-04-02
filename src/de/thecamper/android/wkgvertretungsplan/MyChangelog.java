@@ -17,9 +17,14 @@ package de.thecamper.android.wkgvertretungsplan;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import de.thecamper.android.androidtools.ChangelogActivity;
 
@@ -43,6 +48,18 @@ public class MyChangelog extends ChangelogActivity {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
 		setChangelogText(R.array.changelog);
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
+				"enableAnalytics", false)
+				&& GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS) {
+			Tracker tracker = ((MyApplication) getApplication()).getTracker();
+			tracker.setScreenName(getClass().getSimpleName());
+			tracker.send(new HitBuilders.AppViewBuilder().build());
+		}
 	}
 
 	@Override

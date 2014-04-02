@@ -40,7 +40,10 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import de.thecamper.android.wkgvertretungsplan.fragments.KlausurplanFragment;
 import de.thecamper.android.wkgvertretungsplan.fragments.ScheduleFragment;
@@ -70,8 +73,10 @@ public class WKGVertretungsplanActivity extends SherlockFragmentActivity impleme
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		outState.putBoolean("menuProgressBarVisible",
-				(menuItemRefresh.getActionView() != null));
+		if (menuItemRefresh != null) {
+			outState.putBoolean("menuProgressBarVisible",
+					(menuItemRefresh.getActionView() != null));
+		}
 	}
 
 	/** Called when the activity is first created. */
@@ -115,27 +120,17 @@ public class WKGVertretungsplanActivity extends SherlockFragmentActivity impleme
 	}
 
 	@Override
-	public void onDestroy() {
-		super.onDestroy();
-	}
-
-	@Override
-	public void onStart() {
-		super.onStart();
-		if (preferences.getBoolean("enableAnalytics", false)) {
-			EasyTracker.getInstance(this).activityStart(this);
-		}
-
-	}
-
-	@Override
-	public void onStop() {
-		super.onStop();
-		if (preferences.getBoolean("enableAnalytics", false)) {
-			EasyTracker.getInstance(this).activityStop(this);
+	public void onResume() {
+		super.onResume();
+		if (preferences.getBoolean("enableAnalytics", false)
+				&& GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS) {
+			Tracker tracker = ((MyApplication) getApplication()).getTracker();
+			tracker.setScreenName(getClass().getSimpleName());
+			tracker.send(new HitBuilders.AppViewBuilder().build());
 		}
 	}
 
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getSupportMenuInflater();
 		inflater.inflate(R.menu.menu, menu);
@@ -147,6 +142,7 @@ public class WKGVertretungsplanActivity extends SherlockFragmentActivity impleme
 		return true;
 	}
 
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.preferences:
@@ -167,6 +163,18 @@ public class WKGVertretungsplanActivity extends SherlockFragmentActivity impleme
 	 * an asynchronous background task
 	 */
 	private void updateImage() {
+		if (preferences.getBoolean("enableAnalytics", false)
+				&& GooglePlayServicesUtil
+						.isGooglePlayServicesAvailable(WKGVertretungsplanActivity.this) == ConnectionResult.SUCCESS) {
+			Tracker tracker = ((MyApplication) getApplication()).getTracker();
+			tracker.send(new HitBuilders.EventBuilder()
+					.setCategory(getString(R.string.EventCategory))
+					.setAction(getString(R.string.eventRefresh))
+					.setLabel(
+							pagerAdapter.getFragment(viewPager.getCurrentItem())
+									.getClass().getSimpleName()).build());
+		}
+
 		int id = (pagerAdapter.getFragment(viewPager.getCurrentItem()) instanceof VertretungsplanFragment) ? TaskFragment.VERTRETUNGSPLAN
 				: TaskFragment.KLAUSURPLAN;
 		taskFragment.new DownloadFileTask(this, id)
@@ -266,8 +274,19 @@ public class WKGVertretungsplanActivity extends SherlockFragmentActivity impleme
 
 		public void onPageSelected(int position) {
 			getSupportActionBar().setSelectedNavigationItem(position);
-		}
 
+			if (preferences.getBoolean("enableAnalytics", false)
+					&& GooglePlayServicesUtil
+							.isGooglePlayServicesAvailable(WKGVertretungsplanActivity.this) == ConnectionResult.SUCCESS) {
+				Tracker tracker = ((MyApplication) getApplication()).getTracker();
+				tracker.send(new HitBuilders.EventBuilder()
+						.setCategory(getString(R.string.EventCategory))
+						.setAction(getString(R.string.eventSwipeView))
+						.setLabel(
+								pagerAdapter.getFragment(viewPager.getCurrentItem())
+										.getClass().getSimpleName()).build());
+			}
+		}
 	}
 
 	// ////////////////////////////////////////////////////////////////

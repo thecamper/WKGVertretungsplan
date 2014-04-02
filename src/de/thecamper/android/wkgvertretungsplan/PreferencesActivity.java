@@ -27,6 +27,10 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 
 public class PreferencesActivity extends SherlockPreferenceActivity {
 
@@ -73,6 +77,19 @@ public class PreferencesActivity extends SherlockPreferenceActivity {
 				return false;
 			}
 		});
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
+				"enableAnalytics", false)
+				&& GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS) {
+			Tracker tracker = ((MyApplication) getApplication()).getTracker();
+			tracker.setScreenName(getClass().getSimpleName());
+			tracker.send(new HitBuilders.AppViewBuilder().build());
+		}
 	}
 
 	@Override

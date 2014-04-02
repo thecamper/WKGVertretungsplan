@@ -9,7 +9,7 @@
     <string name="author">Autor</string>
     <string name="authorName">Daniel Grothe</string>
     <string name="version">Version</string>
-    <string name="versionNumber">1.3</string>
+    <string name="versionNumber">1.3.1</string>
     <string name="prefLoginTitle">Login-Namen eingeben</string>
     <string name="prefLoginDialogTitle">Login-Namen eingeben</string>
     <string name="prefLoginSummary">Der Login-Name</string>
@@ -40,7 +40,9 @@
     <string name="tabKlausurplanName">Klausurplan</string>
     <string name="htmlBodyTop"><![CDATA[<html><head></head><body><img src=\"data:image/gif;base64,]]></string>
     <string name="htmlBodyBot"><![CDATA[\" style=\"display: block; margin-left: auto; margin-right: auto;\" /></body></html>]]></string>
-
+	<string name="EventCategory">VertretungsplanEvent</string>
+	<string name="eventSwipeView">EventSwipeView</string>
+	<string name="eventRefresh">EventRefresh</string>
     <string-array name="prefThemeEntries">
         <item>Dunkel</item>
         <item>Hell</item>
@@ -51,7 +53,7 @@
         <item>light</item>
         <item>light_darkActionBar</item>
     </string-array>
-        <string name="prefThemeTitle">Theme</string>
-        <string name="prefThemeSummary">Theme auswählen</string>
-
+    <string name="prefThemeTitle">Theme</string>
+    <string name="prefThemeSummary">Theme auswählen</string>
+	
 </resources>

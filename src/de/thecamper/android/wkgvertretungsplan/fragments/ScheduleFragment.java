@@ -21,7 +21,6 @@ import java.io.IOException;
 
 import org.apache.commons.io.IOUtils;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -36,8 +35,6 @@ public abstract class ScheduleFragment extends Fragment implements
 
 	protected ProgressBar progressBar;
 	protected WebView webView;
-
-	protected SharedPreferences preferences;
 
 	public ScheduleFragment() {
 
