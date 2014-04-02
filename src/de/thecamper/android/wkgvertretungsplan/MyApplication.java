@@ -46,7 +46,7 @@ public class MyApplication extends Application {
 			GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
 			// analytics.setDryRun(true);
 			// analytics.getLogger().setLogLevel(LogLevel.VERBOSE);
-			tracker = analytics.newTracker("UA-32253235-1");
+			tracker = analytics.newTracker("UA-49636509-1");
 		}
 		return tracker;
 	}

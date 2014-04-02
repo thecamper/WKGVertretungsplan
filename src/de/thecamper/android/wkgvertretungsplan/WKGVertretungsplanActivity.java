@@ -41,6 +41,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.HitBuilders.EventBuilder;
 import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -167,12 +168,14 @@ public class WKGVertretungsplanActivity extends SherlockFragmentActivity impleme
 				&& GooglePlayServicesUtil
 						.isGooglePlayServicesAvailable(WKGVertretungsplanActivity.this) == ConnectionResult.SUCCESS) {
 			Tracker tracker = ((MyApplication) getApplication()).getTracker();
-			tracker.send(new HitBuilders.EventBuilder()
-					.setCategory(getString(R.string.EventCategory))
-					.setAction(getString(R.string.eventRefresh))
-					.setLabel(
-							pagerAdapter.getFragment(viewPager.getCurrentItem())
-									.getClass().getSimpleName()).build());
+			EventBuilder eventBuilder = new EventBuilder(
+					getString(R.string.EventCategory), getString(R.string.eventRefresh));
+			Fragment currentFragment = pagerAdapter.getFragment(viewPager
+					.getCurrentItem());
+			if (currentFragment != null) {
+				eventBuilder.setLabel(currentFragment.getClass().getSimpleName());
+			}
+			tracker.send(eventBuilder.build());
 		}
 
 		int id = (pagerAdapter.getFragment(viewPager.getCurrentItem()) instanceof VertretungsplanFragment) ? TaskFragment.VERTRETUNGSPLAN
@@ -279,12 +282,15 @@ public class WKGVertretungsplanActivity extends SherlockFragmentActivity impleme
 					&& GooglePlayServicesUtil
 							.isGooglePlayServicesAvailable(WKGVertretungsplanActivity.this) == ConnectionResult.SUCCESS) {
 				Tracker tracker = ((MyApplication) getApplication()).getTracker();
-				tracker.send(new HitBuilders.EventBuilder()
-						.setCategory(getString(R.string.EventCategory))
-						.setAction(getString(R.string.eventSwipeView))
-						.setLabel(
-								pagerAdapter.getFragment(viewPager.getCurrentItem())
-										.getClass().getSimpleName()).build());
+				EventBuilder eventBuilder = new EventBuilder(
+						getString(R.string.EventCategory),
+						getString(R.string.eventSwipeView));
+				Fragment currentFragment = pagerAdapter.getFragment(viewPager
+						.getCurrentItem());
+				if (currentFragment != null) {
+					eventBuilder.setLabel(currentFragment.getClass().getSimpleName());
+				}
+				tracker.send(eventBuilder.build());
 			}
 		}
 	}
